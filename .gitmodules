@@ -1,0 +1,9 @@
+[submodule "cotire"]
+	path = cotire
+	url = git@github.com:sakra/cotire.git
+[submodule "lodepng"]
+	path = lodepng
+	url = git@github.com:lvandeve/lodepng.git
+[submodule "readerwriterqueue"]
+	path = readerwriterqueue
+	url = git@github.com:cameron314/readerwriterqueue.git
