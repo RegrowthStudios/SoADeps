@@ -5,7 +5,7 @@
 #pragma once
 #endif
 
-#include <memory>
+#include <boost/shared_ptr.hpp>
 
 #include "yaml-cpp/dll.h"
 
@@ -18,11 +18,11 @@ namespace YAML
 		class memory;
 		class memory_holder;
 
-		typedef std::shared_ptr<node> shared_node;
-        typedef std::shared_ptr<node_ref> shared_node_ref;
-        typedef std::shared_ptr<node_data> shared_node_data;
-        typedef std::shared_ptr<memory_holder> shared_memory_holder;
-        typedef std::shared_ptr<memory> shared_memory;
+		typedef boost::shared_ptr<node> shared_node;
+        typedef boost::shared_ptr<node_ref> shared_node_ref;
+        typedef boost::shared_ptr<node_data> shared_node_data;
+        typedef boost::shared_ptr<memory_holder> shared_memory_holder;
+        typedef boost::shared_ptr<memory> shared_memory;
 	}
 }
 
