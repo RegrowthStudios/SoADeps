@@ -21,7 +21,7 @@
 #include "../IDGenerator.h"
 
 namespace vorb {
-    namespace core {
+    namespace ecs {
         class ComponentTableBase;
         
         typedef std::pair<nString, ComponentTableBase*> NamedComponent; ///< A component table paired with its name
@@ -102,19 +102,19 @@ namespace vorb {
             Event<EntityID> onEntityRemoved; ///< Called when an entity is removed from this system
             Event<NamedComponent> onComponentAdded; ///< Called when a component table is added to this system
         private:
-            typedef std::pair<ComponentTableBase*, std::shared_ptr<IDelegate<EntityID>>> ComponentSubscriber;
+            typedef std::pair<ComponentTableBase*, std::shared_ptr<Delegate<Sender, EntityID>>> ComponentSubscriber;
             typedef std::unordered_map<nString, ComponentSubscriber> ComponentSubscriberSet;
 
             EntitySet _entities; ///< List of entities
             EntityID m_eidHighest = 0; ///< Highest generated entity ID
-            vecs::BitTable m_entityComponents; ///< Truth table for components that an entity holds
+            BitTable m_entityComponents; ///< Truth table for components that an entity holds
 
-            IDGenerator<EntityID> _genEntity; ///< Unique ID generator for entities
+            vcore::IDGenerator<EntityID> _genEntity; ///< Unique ID generator for entities
             ComponentSet _components; ///< List of component tables
             ComponentList m_componentList; ///< Component tables organized by their id
         };
     }
 }
-namespace vcore = vorb::core;
+namespace vecs = vorb::ecs;
 
 #endif // ECS_h__

@@ -21,7 +21,7 @@
 namespace vorb {
     namespace io {
         typedef std::vector<Path> DirectoryEntries; ///< A list of directory entries
-        typedef IDelegate<const Path&> DirectoryEntryCallback; ///< Type for a callback function
+        typedef Delegate<Sender, const Path&> DirectoryEntryCallback; ///< Type for a callback function
 
         /// Represents a directory that houses paths
         class Directory {
@@ -44,14 +44,14 @@ namespace vorb {
             /// Iterate the directory, placing entries into a list
             /// @param l: List where entries will be placed
             /// @return Number of added entries
-            ui32 appendEntries(OUT DirectoryEntries& l) const;
+            size_t appendEntries(OUT DirectoryEntries& l) const;
             /// Iterate a directory, invoking a function on each entry
             /// @pre: f may not be null
             /// @param f: Invokable function
             void forEachEntry(DirectoryEntryCallback* f) const;
             template<typename F>
             void forEachEntry(F f) const {
-                DirectoryEntryCallback* fDel = createDelegate<const Path&>(f);
+                DirectoryEntryCallback* fDel = makeFunctor<Sender, const Path&>(f);
                 forEachEntry(fDel);
                 delete fDel;
             }

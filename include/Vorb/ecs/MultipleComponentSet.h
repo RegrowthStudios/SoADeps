@@ -19,7 +19,7 @@
 #include "../Events.hpp"
 
 namespace vorb {
-    namespace core {
+    namespace ecs {
         class ComponentTableBase;
 
         /// Listener class that tracks entities that meet component requirements
@@ -58,11 +58,11 @@ namespace vorb {
             EntityIDSet _entities; ///< List of entity IDs that meet requirements
             std::vector<ComponentTableBase*> _tables; ///< List of required component tables
         private:
-            std::shared_ptr<IDelegate<ComponentID, EntityID>> _fEntityAdded;
-            std::shared_ptr<IDelegate<ComponentID, EntityID>> _fEntityRemoved;
+            std::shared_ptr<Delegate<Sender, ComponentID, EntityID>> _fEntityAdded;
+            std::shared_ptr<Delegate<Sender, ComponentID, EntityID>> _fEntityRemoved;
         };
     }
 }
-namespace vcore = vorb::core;
+namespace vecs = vorb::ecs;
 
 #endif // MultipleComponentSet_h__

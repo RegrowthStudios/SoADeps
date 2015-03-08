@@ -16,6 +16,7 @@
 #define ModelIO_h__
 
 #include "MeshData.h"
+#include "AnimationData.h"
 #include "../utils.h"
 
 namespace std {
@@ -23,7 +24,7 @@ namespace std {
 }
 
 namespace vorb {
-    namespace io {
+    namespace graphics {
 
         struct OBJMesh {
         public:
@@ -38,10 +39,12 @@ namespace vorb {
         class ModelIO {
         public:
             static ui32v2 loadOBJ(CALLER_DELETE const cString data, OUT OBJMesh& mesh);
-            static CALLER_DELETE vg::MeshDataRaw loadRAW(CALLER_DELETE const void* data, OUT vg::VertexDeclaration& decl, OUT size_t& indexSize);
+            static CALLER_DELETE vg::MeshDataRaw loadRAW(CALLER_DELETE const void* data, OUT vg::VertexDeclaration& decl, OUT ui32& indexSize);
+
+            static CALLER_DELETE vg::Skeleton loadAnim(CALLER_DELETE const void* data);
         };
     }
 }
-namespace vio = vorb::io;
+namespace vg = vorb::graphics;
 
 #endif // ModelIO_h__
