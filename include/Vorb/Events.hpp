@@ -235,7 +235,7 @@ public:
     typedef RDelegate<void, Sender, Params...> Listener; ///< Callback delegate type
 
     /// Create an event with a sender attached to it
-    /// @param sender: Owner object sent with each invokation
+    /// @param sender: Owner object sent with each invocation
     Event(Sender sender = nullptr) :
         m_sender(sender) {
         // Empty
