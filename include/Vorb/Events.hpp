@@ -249,17 +249,28 @@ public:
     typedef RDelegate<void, Sender, Params...> Listener; ///< Callback delegate type
 
     /// Create an event with a sender attached to it
-    /// @param sender: Owner object sent with each invokation
+    /// @param sender: Owner object sent with each invocation
     Event(Sender sender = nullptr) :
         m_sender(sender) {
         // Empty
     }
 
+    /*! @brief Reset the sender value of this event to another.
+     * 
+     * @warning Resetting a sender of an event could cause harm to existing listeners.
+     * 
+     * @param s: New sender pointer.
+     */
+    void setSender(Sender s) {
+        m_sender = s;
+    }
+
     /// Call all bound methods
     /// @param p: Arguments used in function calls
     void send(Params... p) {
-        for (auto& f : m_funcs) {
-            f(m_sender, p...);
+        size_t sz = m_funcs.size();
+        for (size_t i = 0; i < sz && i < m_funcs.size(); i++) {
+            m_funcs[i](m_sender, p...);
         }
     }
     /// Call all bound methods
@@ -286,6 +297,7 @@ public:
         this->add(*functor);
         return functor;
     }
+
     /// Add a function to this event whilst allowing chaining
     /// @param f: A subscriber
     /// @return Self
