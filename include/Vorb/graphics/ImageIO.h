@@ -60,13 +60,10 @@ namespace vorb {
             };
         };
 
-        class ScopedBitmapResource;
-
         class ImageIO {
         public:
             static BitmapResource alloc(const ui32& w, const ui32& h, const ImageIOFormat& format);
             static void free(BitmapResource& res);
-            static void free(ScopedBitmapResource& res);
 
             BitmapResource load(const vio::Path& path,
                                 const ImageIOFormat& format = ImageIOFormat::RGBA_UI8,
