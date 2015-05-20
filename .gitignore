@@ -2,3 +2,6 @@
 [Tt]humbs.db
 *.DS_Store
 desktop.ini
+
+# Ignore large binaries (size restriction)
+lib/
