@@ -25,6 +25,10 @@
 
 #include "../io/Keg.h"
 
+#if defined(VORB_DX_11)
+struct ID3D11RenderTargetView;
+#endif
+
 namespace vorb {
     namespace ui {
 
@@ -100,7 +104,7 @@ namespace vorb {
              * 
              * @return True if no error occurred.
              */
-            bool init();
+            bool init(bool isResizable = true);
             /*! @brief Destroys the window and associated graphics context.
              * 
              * @pre: This disposal method should be called on the thread where the window was created and the
@@ -172,12 +176,21 @@ namespace vorb {
              * @return This window's graphics context.
              */
             GraphicsContext getContext() const; // TODO(Cristian): Does returning the D3D Device cause convenience or confusion?
+#if defined(VORB_DX_11)
+            ID3D11RenderTargetView* getMainRenderTargetView() const;
+#endif
 
             // Change Display Settings
             void setScreenSize(i32 w, i32 h, bool overrideCheck = false);
             void setFullscreen(bool useFullscreen, bool overrideCheck = false);
             void setBorderless(bool useBorderless, bool overrideCheck = false);
             void setSwapInterval(GameSwapInterval mode, bool overrideCheck = false);
+            /*! @brief Sets the position of the window
+             * 
+             * @param x: X position. 0 will center it.
+             * @param Y: Y position. 0 will center it.
+             */
+            void setPosition(int x, int y);
             void setMaxFPS(f32 fpsLimit);
             void setTitle(const cString title) const;
         
