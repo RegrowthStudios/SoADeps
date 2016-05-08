@@ -7,3 +7,6 @@
 [submodule "readerwriterqueue"]
 	path = readerwriterqueue
 	url = git@github.com:cameron314/readerwriterqueue.git
+[submodule "Vorb"]
+	path = Vorb
+	url = git@github.com:RegrowthStudios/Vorb.git
