@@ -5,3 +5,6 @@ desktop.ini
 
 # Ignore large binaries (size restriction)
 lib/
+
+#Ignore Vorb
+include/Vorb/*
